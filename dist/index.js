@@ -1866,7 +1866,7 @@ var APP = (() => {
       }
       exports.Component = Component;
       function Accordion(label, ...children) {
-        return Container("details", Text2(label, "summary"), ...children);
+        return Container("details", Text(label, "summary"), ...children);
       }
       exports.Accordion = Accordion;
       function AutoComplete(optionData, input) {
@@ -1875,7 +1875,7 @@ var APP = (() => {
           statesToBind: [optionData],
           initialValue: [],
           compute: (self) => {
-            self.value = optionData.value.map((option) => Text2(option, "option"));
+            self.value = optionData.value.map((option) => Text(option, "option"));
           }
         });
         return Div(Component("datalist").setID(uuid).setItems(optionViews), input.setAttr("list", uuid));
@@ -1895,7 +1895,7 @@ var APP = (() => {
       })(ButtonStyles || (exports.ButtonStyles = ButtonStyles = {}));
       function Button(configuration) {
         var _a, _b, _c;
-        return Component("button").addItems(Icon((_a = configuration.iconName) !== null && _a !== void 0 ? _a : ""), Text2((_b = configuration.text) !== null && _b !== void 0 ? _b : "").addToClass("button-texts")).setAttr("aria-label", configuration.accessibilityLabel).addToClass("buttons").addToClass((_c = configuration.style) !== null && _c !== void 0 ? _c : ButtonStyles.Normal).listen("click", (e) => {
+        return Component("button").addItems(Icon((_a = configuration.iconName) !== null && _a !== void 0 ? _a : ""), Text((_b = configuration.text) !== null && _b !== void 0 ? _b : "").addToClass("button-texts")).setAttr("aria-label", configuration.accessibilityLabel).addToClass("buttons").addToClass((_c = configuration.style) !== null && _c !== void 0 ? _c : ButtonStyles.Normal).listen("click", (e) => {
           e.stopPropagation();
           configuration.action(e);
         });
@@ -1906,7 +1906,7 @@ var APP = (() => {
       }
       exports.ButtonGroup = ButtonGroup;
       function Checkbox(configuration) {
-        return Text2(configuration.label, "label").addItemsBefore(Input2({
+        return Text(configuration.label, "label").addItemsBefore(Input2({
           type: "checkbox",
           fallbackValue: void 0,
           value: void 0,
@@ -1943,7 +1943,7 @@ var APP = (() => {
       }
       exports.Form = Form2;
       function GroupContainer2(label, ...children) {
-        return VStack2(Text2(label, "h5").useMutedColor(), VStack2(...children).cssFlex(0).cssAlignItems("start").cssJustifyContent("start")).useDefaultSpacing().cssJustifyContent("start").cssMarginTop("1rem").cssFlex(0);
+        return VStack2(Text(label, "h5").useMutedColor(), VStack2(...children).cssFlex(0).cssAlignItems("start").cssJustifyContent("start")).useDefaultSpacing().cssJustifyContent("start").cssMarginTop("1rem").cssFlex(0);
       }
       exports.GroupContainer = GroupContainer2;
       function Header(configuration, ...actions) {
@@ -1958,7 +1958,7 @@ var APP = (() => {
               if (!configuration.forceShowBackButton == true)
                 self2.hideOnScreenSize(ScreenSizes.Desktop);
             }));
-        }).addItems(Text2(configuration.text, "h5").access((self) => {
+        }).addItems(Text(configuration.text, "h5").access((self) => {
           if (configuration.hideTextOnMobile == true)
             self.hideOnScreenSize(ScreenSizes.Mobile);
         }), Spacer(), ...actions).cssFlex(0).useDefaultSpacing().addToClass("headers");
@@ -1969,7 +1969,7 @@ var APP = (() => {
       }
       exports.HStack = HStack;
       function Icon(iconName) {
-        return Text2(iconName).addToClass("icons").addToClass("material-icons-round");
+        return Text(iconName).addToClass("icons").addToClass("material-icons-round");
       }
       exports.Icon = Icon;
       var TextInputCfg2 = class {
@@ -2054,7 +2054,7 @@ var APP = (() => {
       }
       exports.Label = Label;
       function Link(label, href) {
-        return Text2(label, "a").setAttr("href", href);
+        return Text(label, "a").setAttr("href", href);
       }
       exports.Link = Link;
       var ListStyles;
@@ -2274,7 +2274,7 @@ var APP = (() => {
       }
       exports.ProgressBar = ProgressBar;
       function RadioButton(configuration) {
-        return Text2(configuration.label, "label").addItemsBefore(Input2({
+        return Text(configuration.label, "label").addItemsBefore(Input2({
           type: "radio",
           fallbackValue: void 0,
           value: void 0,
@@ -2298,7 +2298,7 @@ var APP = (() => {
           statesToBind: [options],
           initialValue: [],
           compute: (self) => {
-            self.value = options.value.map((option) => Text2(option.label, "option").setValue(option.value));
+            self.value = options.value.map((option) => Text(option.label, "option").setValue(option.value));
           }
         });
         return Component("select").setItems(optionViews).addToClass("selects").access((self) => self.createTightBinding(new ValueTBModel({
@@ -2364,10 +2364,10 @@ var APP = (() => {
         return Component("input").addToClass("submits").setAttr("value", text).setAttr("type", "submit");
       }
       exports.Submit = Submit2;
-      function Text2(value, tagName = "span") {
+      function Text(value, tagName = "span") {
         return Component(tagName).setText(value);
       }
-      exports.Text = Text2;
+      exports.Text = Text;
       function Textarea(value, placeholder) {
         return Component("textarea").addToClass("textareas").access((self) => self.createTightBinding(new ValueTBModel({
           component: self,
@@ -2418,7 +2418,7 @@ var APP = (() => {
           return main2;
         }
         draw(data) {
-          return Text2("Hello, world!");
+          return Text("Hello, world!");
         }
         setup(data) {
         }
@@ -2546,14 +2546,12 @@ var APP = (() => {
           (0, import_base.GroupContainer)(
             "Log in",
             (0, import_base.VisualGroup)(
-              (0, import_base.Input)(
-                new import_base.TextInputCfg(username, "Username")
-              ).setAccessibilityLabel("username"),
-              (0, import_base.Input)(new import_base.TextInputCfg(password, "Password")).setAccessibilityLabel("password").setAttr("type", "password"),
+              (0, import_base.Input)(new import_base.TextInputCfg(username, "Username")).setAttr("name", "username").setAccessibilityLabel("username"),
+              (0, import_base.Input)(new import_base.TextInputCfg(password, "Password")).setAttr("name", "password").setAccessibilityLabel("password").setAttr("type", "password"),
               (0, import_base.Submit)("Log in")
             )
           )
-        ).cssWidth("100%").cssMaxWidth("16em")
+        ).cssWidth("100%").cssMaxWidth("24em")
       ).useDefaultPadding().useDefaultSpacing().cssAlignItems("center")
     );
   }

@@ -5,7 +5,6 @@ import {
 	Input,
 	State,
 	Submit,
-	Text,
 	TextInputCfg,
 	VisualGroup,
 	VStack,
@@ -25,10 +24,11 @@ export function main() {
 				GroupContainer(
 					'Log in',
 					VisualGroup(
-						Input(
-							new TextInputCfg(username, 'Username'),
-						).setAccessibilityLabel('username'),
+						Input(new TextInputCfg(username, 'Username'))
+							.setAttr('name', 'username')
+							.setAccessibilityLabel('username'),
 						Input(new TextInputCfg(password, 'Password'))
+							.setAttr('name', 'password')
 							.setAccessibilityLabel('password')
 							.setAttr('type', 'password'),
 						Submit('Log in'),
@@ -36,7 +36,7 @@ export function main() {
 				),
 			)
 				.cssWidth('100%')
-				.cssMaxWidth('16em'),
+				.cssMaxWidth('24em'),
 		)
 			.useDefaultPadding()
 			.useDefaultSpacing()
