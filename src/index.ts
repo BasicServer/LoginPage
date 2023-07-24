@@ -11,6 +11,8 @@ import {
 } from '@frugal-ui/base';
 
 export function main() {
+	document.title = 'Log in';
+
 	const username = new State('');
 	const password = new State('');
 
