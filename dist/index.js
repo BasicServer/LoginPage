@@ -2534,6 +2534,7 @@ var APP = (() => {
   });
   var import_base = __toESM(require_base2());
   function main() {
+    document.title = "Log in";
     const username = new import_base.State("");
     const password = new import_base.State("");
     (0, import_base.buildInterface)(
